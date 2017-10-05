@@ -13,7 +13,6 @@ namespace CSharp
             Console.WriteLine("First try");
 
             Console.ReadLine();
-            ;
         }
     }
 }
