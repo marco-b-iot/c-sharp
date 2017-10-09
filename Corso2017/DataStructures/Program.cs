@@ -6,11 +6,22 @@ namespace DataStructures
     {
         static void Main(string[] args)
         {
-            int[] numbers = new int[5];
-            Console.WriteLine("Length: " + numbers.Length);
-            Console.WriteLine("numbers[0] = " + numbers[0]);
-            numbers[2] = 5;
-            Console.WriteLine("numbers[2] = " + numbers[2]);
+            Console.WriteLine("Quanti numeri vuoi sommare?");
+            string addendsNumber = Console.ReadLine();
+
+            int[] addends = new int[int.Parse(addendsNumber)];
+
+            int sum = 0;
+            for (int i = 0; i < addends.Length; i++)
+            {
+                Console.WriteLine($"Inserisci l'addendo {i + 1} di { addends.Length }");
+                string addend = Console.ReadLine();
+                addends[i] = int.Parse(addend);
+
+                sum += addends[i];
+            }
+
+            Console.WriteLine(string.Format("La somma è {0} e ho sommato {1} addendi", sum, addendsNumber));
 
             Console.ReadLine();
         }
