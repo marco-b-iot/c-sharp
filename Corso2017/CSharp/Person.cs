@@ -8,12 +8,14 @@ namespace CSharp
 {
     class Person
     {
-        string nome;
-        string cognome;
+        static string _nome;
+        static string _cognome;
 
-        string Saluta()
+        public static string Saluta(string nome, string cognome)
         {
-            return "";
+            string salutoDellaPersona = "Ciao " + nome + " " + cognome;
+
+            return salutoDellaPersona;
         }
     }
 }
