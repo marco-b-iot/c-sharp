@@ -9,6 +9,7 @@ namespace DataStructures
         private const string END_SUM = "=";
 
         enum InputResult { Number, Equals, Error }
+        enum NumberType { Even, Odd }
         
         static void Main(string[] args)
         {
@@ -30,7 +31,7 @@ namespace DataStructures
                 else if (result == InputResult.Number)
                 {
                     addends.Add(number);
-                    sum += number;
+                    sum += number;                    
                 }
                 else
                 {
@@ -40,7 +41,38 @@ namespace DataStructures
 
             Console.WriteLine(string.Format("La somma è {0} e ho sommato {1} addendi", sum, addends.Count));
 
+            Console.WriteLine($"I numeri pari inseriti sono: { string.Join(", ", GetNumbers(NumberType.Even, addends)) }");
+            Console.WriteLine($"I numeri dispari inseriti sono: { string.Join(", ", GetNumbers(NumberType.Odd, addends)) }");
+
             Console.ReadLine();
+        }
+
+        private static List<int> GetNumbers(NumberType numberType, List<int> addends)
+        {
+            int modResult = numberType == NumberType.Even ? 0 : 1;
+
+            List<int> selectedNumbers = new List<int>();
+
+            //for (int i = 0; i < addends.Count; i++)
+            //{
+            //    if (addends[i] % 2 == modResult)
+            //        selectedNumbers.Add(addends[i]);
+            //}
+
+            //int count = 0;
+            foreach (int addend in addends)
+            {
+                //if (count < 40)
+                //{
+                //    count++;
+                //    continue;
+                //}
+
+                if (addend % 2 == modResult)
+                    selectedNumbers.Add(addend);
+            }
+
+            return selectedNumbers;
         }
 
         private static InputResult VerifyInput(string input, out int number)
