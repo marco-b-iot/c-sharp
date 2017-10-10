@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DataStructures
 {
@@ -11,7 +12,8 @@ namespace DataStructures
         
         static void Main(string[] args)
         {
-            ArrayList addends = new ArrayList();
+            //ArrayList addends = new ArrayList();
+            List<int> addends = new List<int>();
 
             int sum = 0;
 
