@@ -22,6 +22,7 @@ namespace DataStructures
             {
                 Console.WriteLine($"Inserisci l'addendo ('=' per effettuare la somma)");
                 string input = Console.ReadLine();
+                
                 InputResult result = VerifyInput(input, out int number);
 
                 if (result == InputResult.Equals)
@@ -68,7 +69,7 @@ namespace DataStructures
                 //    continue;
                 //}
 
-                if (addend % 2 == modResult)
+                if (Math.Abs(addend % 2) == modResult)
                     selectedNumbers.Add(addend);
             }
 
