@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enums", "Enums\Enums.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructures", "DataStructures\DataStructures.csproj", "{9DB0D12C-0CBC-48AC-A927-8596A3D4EB87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome", "SmartHome\SmartHome.csproj", "{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9DB0D12C-0CBC-48AC-A927-8596A3D4EB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DB0D12C-0CBC-48AC-A927-8596A3D4EB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DB0D12C-0CBC-48AC-A927-8596A3D4EB87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA5CD97-17B8-4AA9-9E15-D7095D3E497F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
