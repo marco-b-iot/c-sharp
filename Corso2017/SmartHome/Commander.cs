@@ -9,13 +9,33 @@ namespace SmartHome
     class Commander
     {
         LampsController _lampsController;
+        LampsController.OperationResult _lastResult;
+        List<string> _display;
+
+        public List<string> OperationOutput
+        {
+            get
+            {
+                return _display;
+            }
+        }
+
+        public LampsController.OperationResult OperationResult
+        {
+            get
+            {
+                return _lastResult;
+            }
+        }
+
 
         public enum Commands { AddLamp, RemoveLame, ListLamps, ListLampsStatus, SwitchOn, SwitchOff}
 
-        public LampsController.OperationResult Execute(Commands command, string lightName)
+        public bool Execute(Commands command, string lightName="")
         {
-            bool end = false;
             LampsController.OperationResult result = LampsController.OperationResult.Success;
+            _display = new List<string>();
+
             switch (command)
             {
                 case Commands.AddLamp:
@@ -26,10 +46,11 @@ namespace SmartHome
                     break;
                 case Commands.ListLamps:
                     List<string> lamps;
-                    result = _lampsController.GetLampsName(out lamps);
+                    result = _lampsController.GetLampsName(out _display);
+
                     break;
                 case Commands.ListLampsStatus:
-                    result = _lampsController.GetLampsStatus(out lamps, ": ");
+                    result = _lampsController.GetLampsStatus(out _display, ": ");
                     break;
                 case Commands.SwitchOn:
                     result = _lampsController.TurnOn(lightName);
@@ -40,11 +61,12 @@ namespace SmartHome
                 default:
                     break;
             }
-            return result;
+            _lastResult = result;
+            return (result == LampsController.OperationResult.Success);
 
         }
 
-        Commander(LampsController lampController)
+        public Commander(LampsController lampController)
         {
             _lampsController = lampController;
         }

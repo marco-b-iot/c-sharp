@@ -34,73 +34,76 @@ namespace SmartHome
             Console.WriteLine("off - Spegni luce");
         }
 
-        private void Execute(string operation)
+        private bool Execute(string operation)
         {
+            bool endCommand = false;
             switch (operation)
             {
                 case "a":
                     string l = Ask("Nome della luce da aggiungere?");
-                    _commander.Execute(Commander.Commands.AddLamp);
-                    PrintResult(result);
+                    _commander.Execute(Commander.Commands.AddLamp, l);
+                    PrintResult(_commander.OperationResult);
                     break;
                 case "r":
                     l = Ask("Nome della luce da eliminare?");
-                    PrintResult(result);
+                    _commander.Execute(Commander.Commands.RemoveLame, l);
+                    PrintResult(_commander.OperationResult);
                     break;
                 case "l":
-                    List<string> lamps;
-                    Console.WriteLine(string.Join("\n", lamps));
-                    PrintResult(result);
+                    _commander.Execute(Commander.Commands.ListLamps);
+                    Console.WriteLine(string.Join("\n", _commander.OperationOutput));
+                    PrintResult(_commander.OperationResult);
                     break;
                 case "ls":
-                    Console.WriteLine(string.Join("\n", lamps));
-                    PrintResult(result);
+                    _commander.Execute(Commander.Commands.ListLampsStatus);
+                    Console.WriteLine(string.Join("\n", _commander.OperationOutput));
+                    PrintResult(_commander.OperationResult);
                     break;
                 case "on":
                     l = Ask("Nome della luce da accendere?");
-                    PrintResult(result);
+                    _commander.Execute(Commander.Commands.SwitchOn, l);
+                    PrintResult(_commander.OperationResult);
                     break;
                 case "off":
-                    l = Ask("Nome della luce da spegnere?");
-                    PrintResult(result);
+                    l = Ask("Nome della luce da accendere?");
+                    _commander.Execute(Commander.Commands.SwitchOff, l);
+                    PrintResult(_commander.OperationResult);
                     break;
                 case "end":
-                    end = true;
+                    endCommand = true;
                     break;
                 default:
                     Console.WriteLine("Comando non riconosciuto");
                     break;
             }
-            return end;
+            return endCommand;
         }
 
         private void PrintResult(LampsController.OperationResult result)
         {
             if (result == LampsController.OperationResult.AlreadyExists)
             {
-                Console.WriteLine("La luce è già esistente");
+                Console.WriteLine("La luce è già esistente.");
             }
             else if (result == LampsController.OperationResult.Empty)
             {
-                Console.WriteLine("Non sono ancora state inserite luci");
+                Console.WriteLine("Non sono presenti luci nel sistema.");
             }
             else if (result == LampsController.OperationResult.InvalidName)
             {
-                Console.WriteLine("Il nome non può iniziare con \" \" o esser vuoto");
+                Console.WriteLine("Il nome non può iniziare con \" \" o esser vuoto.");
             }
             else if (result == LampsController.OperationResult.NotExists)
             {
-                Console.WriteLine("La luce non trovata");
+                Console.WriteLine("La luce non trovata.");
             }
             else
             {
                 Console.WriteLine("Done.");
             }
-
-
         }
 
-        void startDisplay(string[] args)
+        public void startDisplay()
         {
             LampsController lightMan = new LampsController();
             bool end = false;
@@ -110,10 +113,9 @@ namespace SmartHome
                 Console.Clear();
                 PrintMenu();
                 string command = Console.ReadLine();
-                end = Execute(command, lightMan);
-                Console.ReadKey(true);
+                end = Execute(command);
                 Console.WriteLine("Premi un tasto per continuare");
-
+                Console.ReadKey(true);
             }
         }
     }
