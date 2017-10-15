@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 namespace SmartHome
 {
     class Program
-    {
-        
+    { 
         static void Main(string[] args)
         {
-            LampsController lightMan = new LampsController();
-            MainApp app = new MainApp(lightMan);
-            app.Start();
-            
+            LampsController lampController = new LampsController();
+            MainApp app = new MainApp(lampController);
+            app.Start();       
         }
 
         
