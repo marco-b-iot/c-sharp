@@ -10,11 +10,11 @@ namespace SmartHome
     {
         LampsController _lampsController;
         LampsController.OperationResult _lastResult;
-        List<string> _display;
+        List<Object> _display;
 
         public enum Commands { AddLamp, RemoveLame, ListLamps, ListLampsStatus, SwitchOn, SwitchOff }
 
-        public List<string> OperationOutput
+        public List<Object> OperationOutput
         {
             get
             {
@@ -35,7 +35,7 @@ namespace SmartHome
         {
             LampsController.OperationResult result = LampsController.OperationResult.Success;
             //Vuoto i risultati
-            _display = new List<string>(); 
+            _display = new List<Object>(); 
 
             switch (command)
             {
@@ -49,7 +49,7 @@ namespace SmartHome
                     result = _lampsController.GetLampsName(out _display);
                     break;
                 case Commands.ListLampsStatus:
-                    result = _lampsController.GetLampsStatus(out _display, ": ");
+                    result = _lampsController.GetLampsStatus(out _display);
                     break;
                 case Commands.SwitchOn:
                     result = _lampsController.TurnOn(lightName);

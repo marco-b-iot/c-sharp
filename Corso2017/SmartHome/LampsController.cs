@@ -11,6 +11,21 @@ namespace SmartHome
         private List<Lamp> _lamps;
         public enum OperationResult { AlreadyExists, NotExists, Success, Empty, InvalidName}
 
+        public class LampInfo
+        {
+            public string Name { get; private set; }
+            public string Status { get; private set; }
+            public LampInfo(string lampName, string status)
+            {
+                Name = lampName;
+                Status = status;
+            }
+            public override string ToString()
+            {
+                return $"{Name}: {Status}";
+            }
+        }
+
         public OperationResult AddLamp(string roomName)
         {
             OperationResult r;
@@ -66,9 +81,9 @@ namespace SmartHome
             return (GetLamp(room) != null);
         }
 
-        public OperationResult GetLampsName(out List<string> lamps)
+        public OperationResult GetLampsName(out List<Object> lamps)
         {
-            lamps = new List<string>();
+            lamps = new List<Object>();
             OperationResult result = (IsEmpty) ? OperationResult.Empty : OperationResult.Success;
             foreach (var lamp in _lamps)
             {
@@ -85,14 +100,14 @@ namespace SmartHome
             }
         }
         
-        public OperationResult GetLampsStatus(out List<string> lamps, string separator=" -> ")
+        public OperationResult GetLampsStatus(out List<Object> lamps)
         {
-            lamps = new List<string>();
+            lamps = new List<Object>();
             OperationResult result = (_lamps.Count == 0) ? OperationResult.Empty : OperationResult.Success;
            
             foreach (var lamp in _lamps)
             {
-                lamps.Add($"{lamp.Room}{separator}{lamp.Status}");
+                lamps.Add(new LampInfo(lamp.Room, lamp.Status));
             }
             return result;
         }
