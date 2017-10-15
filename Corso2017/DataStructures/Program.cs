@@ -22,8 +22,8 @@ namespace DataStructures
             {
                 Console.WriteLine($"Inserisci l'addendo ('=' per effettuare la somma)");
                 string input = Console.ReadLine();
-                
-                InputResult result = VerifyInput(input, out int number);
+                int number;
+                InputResult result = VerifyInput(input, out number);
 
                 if (result == InputResult.Equals)
                 {
