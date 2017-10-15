@@ -5,13 +5,13 @@
     <NestedTypes>
       <Enum Name="SmartHome.LampsController.OperationResult" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>ControlUnit.cs</NewMemberFileName>
+          <NewMemberFileName>LampsController.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>ABDAIAABBAAAAACAQAAAAAAAAAAAABAAQAAAAAAAAAA=</HashCode>
-      <FileName>ControlUnit.cs</FileName>
+      <FileName>LampsController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SmartHome.Lamp">
