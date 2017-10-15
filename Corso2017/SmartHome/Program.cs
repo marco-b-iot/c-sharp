@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace SmartHome
 {
     class Program
-    {
-        
+    {       
         static void Main(string[] args)
         {
             LampsController lampServer = new LampsController();
@@ -16,8 +15,6 @@ namespace SmartHome
             Display commandLineDisplay= new Display(commander);
             commandLineDisplay.startDisplay();       
         }
-
-        
 
         private static void WriteStatus(Lamp lamp)
         {
