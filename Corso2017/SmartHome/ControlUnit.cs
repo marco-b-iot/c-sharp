@@ -9,6 +9,22 @@ namespace SmartHome
     class LampsController
     {
         private List<Lamp> _lamps;
+
+        public class LampInfo
+        {
+            public string Name { get; private set; }
+            public string Status { get; private set; }
+            public LampInfo(string lampName, string status)
+            {
+                Name = lampName;
+                Status = status;
+            }
+            public override string ToString()
+            {
+                return $"{Name}: {Status}";
+            }
+        }
+
         public enum OperationResult { AlreadyExists, NotExists, Success, Empty, InvalidName}
 
         public OperationResult AddLamp(string roomName)
@@ -42,13 +58,13 @@ namespace SmartHome
             return validName;
         }
 
-        public OperationResult RemoveLamp(string room)
+        public OperationResult RemoveLamp(string roomName)
         {
             OperationResult r;
           
-            if (ExistLamp(room))
+            if (ExistLamp(roomName))
             {
-                _lamps.Remove(GetLamp(room));
+                _lamps.Remove(GetLamp(roomName));
                 r = OperationResult.Success;          
             }
             else if (IsEmpty)
@@ -61,18 +77,18 @@ namespace SmartHome
             return r;
         }
 
-        private bool ExistLamp(string room)
+        private bool ExistLamp(string roomName)
         {
-            return (GetLamp(room) != null);
+            return (GetLamp(roomName) != null);
         }
 
-        public OperationResult GetLampsName(out List<string> lamps)
+        public OperationResult GetLampsName(out List<string> lampNames)
         {
-            lamps = new List<string>();
+            lampNames = new List<string>();
             OperationResult result = (IsEmpty) ? OperationResult.Empty : OperationResult.Success;
             foreach (var lamp in _lamps)
             {
-                lamps.Add(lamp.Room);
+                lampNames.Add(lamp.Room);
             }
             return result;
         }
@@ -85,24 +101,24 @@ namespace SmartHome
             }
         }
         
-        public OperationResult GetLampsStatus(out List<string> lamps, string separator=" -> ")
+        public OperationResult GetLampsStatus(out List<LampInfo> lampAndStatus)
         {
-            lamps = new List<string>();
+            lampAndStatus = new List<LampInfo>();
             OperationResult result = (_lamps.Count == 0) ? OperationResult.Empty : OperationResult.Success;
            
             foreach (var lamp in _lamps)
             {
-                lamps.Add($"{lamp.Room}{separator}{lamp.Status}");
+                lampAndStatus.Add(new LampInfo(lamp.Room, lamp.Status));
             }
             return result;
         }
 
-        private Lamp GetLamp(string room)
+        private Lamp GetLamp(string roomName)
         {
             Lamp found = null;
             foreach (Lamp l in _lamps)
             {
-                if (l.Room == room)
+                if (l.Room == roomName)
                 {
                     found = l;
                 }
@@ -110,24 +126,24 @@ namespace SmartHome
             return found;
         }
 
-        public OperationResult TurnOn(string room)
+        public OperationResult TurnOn(string roomName)
         {
             OperationResult r = OperationResult.NotExists;
             
-            if (ExistLamp(room))
+            if (ExistLamp(roomName))
             {
-                GetLamp(room).TurnOn();
+                GetLamp(roomName).TurnOn();
                 r = OperationResult.Success;
             }
             return r;
         }
 
-        public OperationResult TurnOff(string room)
+        public OperationResult TurnOff(string roomName)
         {
             OperationResult r = OperationResult.NotExists;
-            if (ExistLamp(room))
+            if (ExistLamp(roomName))
             {
-                GetLamp(room).TurnOff();
+                GetLamp(roomName).TurnOff();
                 r = OperationResult.Success;
             }
             return r;

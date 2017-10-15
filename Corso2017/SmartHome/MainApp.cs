@@ -54,8 +54,9 @@ namespace SmartHome
                     PrintResult(result);
                     break;
                 case "ls":
-                    result = _lightMan.GetLampsStatus(out lamps, ": ");
-                    Console.WriteLine(string.Join("\n", lamps));
+                    List<LampsController.LampInfo> lampsStatus = new List<LampsController.LampInfo>();
+                    result = _lightMan.GetLampsStatus(out lampsStatus);
+                    Console.WriteLine(string.Join("\n", lampsStatus));
                     PrintResult(result);
                     break;
                 case "on":

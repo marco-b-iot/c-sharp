@@ -8,6 +8,11 @@
           <NewMemberFileName>ControlUnit.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
+      <Class Name="SmartHome.LampsController.LampInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ControlUnit.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>ABDAIAABBAAAAACAQAAAAAAAAAAAABAAQAAAAAAAAAA=</HashCode>
