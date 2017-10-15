@@ -24,9 +24,8 @@ namespace SmartHome
                 PrintMenu();
                 string command = Console.ReadLine();
                 end = Execute(command);
-                Console.ReadKey(true);
                 Console.WriteLine("Premi un tasto per continuare");
-
+                Console.ReadKey(true);
             }
         }
 
