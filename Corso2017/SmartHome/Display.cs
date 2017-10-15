@@ -24,8 +24,6 @@ namespace SmartHome
 
         private void PrintMenu()
         {
-            //Console.Clear();
-
             Console.WriteLine("a - Aggiungi luce");
             Console.WriteLine("r - Rimuovi luce");
             Console.WriteLine("l - Lista luci");
