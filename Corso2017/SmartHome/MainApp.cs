@@ -15,7 +15,7 @@ namespace SmartHome
             _lightMan = lightMan;
         }
 
-        public void start()
+        public void Start()
         {
             bool end = false;
             while (!end)
@@ -24,8 +24,9 @@ namespace SmartHome
                 PrintMenu();
                 string command = Console.ReadLine();
                 end = Execute(command);
-                Console.WriteLine("Premi un tasto per continuare");
                 Console.ReadKey(true);
+                Console.WriteLine("Premi un tasto per continuare");
+
             }
         }
 

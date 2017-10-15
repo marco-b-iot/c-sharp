@@ -13,7 +13,7 @@ namespace SmartHome
         {
             LampsController lightMan = new LampsController();
             MainApp app = new MainApp(lightMan);
-            app.start();
+            app.Start();
             
         }
 
