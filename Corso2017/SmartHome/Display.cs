@@ -8,6 +8,14 @@ namespace SmartHome
 {
     class Display
     {
+        const string ADD_LIGHT = "a";
+        const string REMOVE_LIGHT = "r";
+        const string LIST_LIGHT = "l";
+        const string LIST_STATUS_LIGHT = "ls";
+        const string ON_LIGHT = "on";
+        const string OFF_LIGHT = "off";
+        const string EXIT = "exit";
+
         Commander _commander;
 
         public Display(Commander c)
@@ -24,50 +32,53 @@ namespace SmartHome
 
         private void PrintMenu()
         {
-            Console.WriteLine("a - Aggiungi luce");
-            Console.WriteLine("r - Rimuovi luce");
-            Console.WriteLine("l - Lista luci");
-            Console.WriteLine("ls - Lista stato luci");
-            Console.WriteLine("on - Accendi luce");
-            Console.WriteLine("off - Spegni luce");
+            Console.WriteLine($"{ADD_LIGHT} \t Aggiungi luce");
+            Console.WriteLine($"{REMOVE_LIGHT} \t Rimuovi luce");
+            Console.WriteLine($"{LIST_LIGHT} \t Lista luci");
+            Console.WriteLine($"{LIST_STATUS_LIGHT} \t Lista stato luci");
+            Console.WriteLine($"{ON_LIGHT} \t Accendi luce");
+            Console.WriteLine($"{OFF_LIGHT} \t Spegni luce");
+            Console.WriteLine($"{EXIT} \t Esci");
+            Console.WriteLine($"Enter per confermanre il comando");
         }
 
-        private bool Execute(string operation)
+        private bool Execute(string stringCommand)
         {
             bool endCommand = false;
-            switch (operation)
+
+            switch (stringCommand)
             {
-                case "a":
+                case ADD_LIGHT:
                     string l = Ask("Nome della luce da aggiungere?");
                     _commander.Execute(Commander.Commands.AddLamp, l);
                     PrintResult(_commander.OperationResult);
                     break;
-                case "r":
+                case REMOVE_LIGHT:
                     l = Ask("Nome della luce da eliminare?");
                     _commander.Execute(Commander.Commands.RemoveLame, l);
                     PrintResult(_commander.OperationResult);
                     break;
-                case "l":
+                case LIST_LIGHT:
                     _commander.Execute(Commander.Commands.ListLamps);
                     Console.WriteLine(string.Join("\n", _commander.OperationOutput));
                     PrintResult(_commander.OperationResult);
                     break;
-                case "ls":
+                case LIST_STATUS_LIGHT:
                     _commander.Execute(Commander.Commands.ListLampsStatus);
                     Console.WriteLine(string.Join("\n", _commander.OperationOutput));
                     PrintResult(_commander.OperationResult);
                     break;
-                case "on":
+                case ON_LIGHT:
                     l = Ask("Nome della luce da accendere?");
                     _commander.Execute(Commander.Commands.SwitchOn, l);
                     PrintResult(_commander.OperationResult);
                     break;
-                case "off":
+                case OFF_LIGHT:
                     l = Ask("Nome della luce da accendere?");
                     _commander.Execute(Commander.Commands.SwitchOff, l);
                     PrintResult(_commander.OperationResult);
                     break;
-                case "end":
+                case EXIT:
                     endCommand = true;
                     break;
                 default:
@@ -105,13 +116,13 @@ namespace SmartHome
         {
             LampsController lightMan = new LampsController();
             bool end = false;
-            //Console.ReadLine();
+
             while (!end)
             {
                 Console.Clear();
                 PrintMenu();
-                string command = Console.ReadLine();
-                end = Execute(command);
+                string userCommand = Console.ReadLine();
+                end = Execute(userCommand);
                 Console.WriteLine("Premi un tasto per continuare");
                 Console.ReadKey(true);
             }
