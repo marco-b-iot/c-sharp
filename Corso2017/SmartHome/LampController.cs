@@ -135,6 +135,10 @@ namespace SmartHome
                 GetLamp(roomName).TurnOn();
                 r = OperationResult.Success;
             }
+            else if (IsEmpty)
+            {
+                r = OperationResult.Empty;
+            }
             return r;
         }
 
@@ -145,6 +149,10 @@ namespace SmartHome
             {
                 GetLamp(roomName).TurnOff();
                 r = OperationResult.Success;
+            }
+            else if (IsEmpty)
+            {
+                r = OperationResult.Empty;
             }
             return r;
         }

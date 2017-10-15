@@ -3,20 +3,20 @@
   <Class Name="SmartHome.LampsController">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <NestedTypes>
-      <Enum Name="SmartHome.LampsController.OperationResult" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>ControlUnit.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
       <Class Name="SmartHome.LampsController.LampInfo" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>ControlUnit.cs</NewMemberFileName>
+          <NewMemberFileName>LampController.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
+      <Enum Name="SmartHome.LampsController.OperationResult" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>LampController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>ABDAIAABBAAAAACAQAAAAAAAAAAAABAAQAAAAAAAAAA=</HashCode>
-      <FileName>ControlUnit.cs</FileName>
+      <FileName>LampController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SmartHome.Lamp">
