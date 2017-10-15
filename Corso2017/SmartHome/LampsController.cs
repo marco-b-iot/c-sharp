@@ -59,20 +59,18 @@ namespace SmartHome
 
         public OperationResult RemoveLamp(string room)
         {
-            OperationResult r;
-          
+            OperationResult r = OperationResult.NotExists;
+
             if (ExistLamp(room))
             {
                 _lamps.Remove(GetLamp(room));
-                r = OperationResult.Success;          
+                r = OperationResult.Success;
             }
             else if (IsEmpty)
             {
                 r = OperationResult.Empty;
-            } else
-            {
-                r = OperationResult.NotExists;
             }
+
             return r;
         }
 
@@ -134,6 +132,11 @@ namespace SmartHome
                 GetLamp(room).TurnOn();
                 r = OperationResult.Success;
             }
+            else if (IsEmpty)
+            {
+                r = OperationResult.Empty;
+            }
+
             return r;
         }
 
@@ -144,6 +147,10 @@ namespace SmartHome
             {
                 GetLamp(room).TurnOff();
                 r = OperationResult.Success;
+            }
+            else if (IsEmpty)
+            {
+                r = OperationResult.Empty;
             }
             return r;
         }
